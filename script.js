@@ -6,8 +6,8 @@ const app = new Vue({
         { name: 'Loko PRO', description: 'Описание дивана 2. Здесь более подробное описание товара.', quantity: 13, image: 'img/2й.png' },
         { name: 'Carina Nova', description: 'Описание дивана 3. Здесь более подробное описание товара.', quantity: 8, image: 'img/3й.png' }
       ],
-      cart: [], // массив для хранения выбранных товаров
-      showModal: false, // флаг для открытия/закрытия модального окна
+      cart: [], 
+      showModal: false, 
       newProduct: {
         name: '',
         description: '',
@@ -30,9 +30,9 @@ const app = new Vue({
       removeFromCart(index) {
         const item = this.cart[index];
         const productIndex = this.products.findIndex(product => product.name === item.name);
-        this.products[productIndex].quantity += 1; // увеличиваем количество товара на 1
-        item.quantity -= 1; // уменьшаем количество товара в корзине на 1
-        if (item.quantity === 0) { // если количество товара в корзине стало равным 0, удаляем товар из корзины
+        this.products[productIndex].quantity += 1;
+        item.quantity -= 1; 
+        if (item.quantity === 0) { 
           this.cart.splice(index, 1);
         }
       },
