@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+
+
+  <title>Sleeping Mood</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<head>
+  <div v-show="cart.length === 0" class="empty-cart">
+    <p>Корзина пуста</p>
+   
+  </div>
+ 
+<body>
+  <div id="app">
+    <header>
+      <h1>Sleeping Mood</h1>
+    </header>
+  <button type="button" class="add3" @click="showModal = true">Добавить</button>
+
+                       <!-- Товары -->
+                <main>
+ <div class="product-row" v-for="(product, index) in products" :key="index">
+            <section class="product-card">
+            <img :src="product.image" :alt="product.name">
+              <h2>{{ product.name }}</h2>
+       <p>{{ product.description }}</p>
+         <p>Количество: {{ product.quantity }}</p>
+          <button type="button" @click="addToCart(index)">В корзину</button>
+             </section>
+         </div>
+    </main>
+
+<!-- --------------------------------------------- -->
+
+
+
+
+
+                      <!-- КОРЗИНА -->
+
+    <div v-show="cart.length > 0" class="cart">
+     
+      <h2>Корзина</h2>
+      <ul>
+        
+        <li v-for="(item, index) in cart" :key="index">
+          <p>{{ item.name }} <span class="quantity">{{ item.quantity }}</span></p>
+          <button type="button" @click="removeFromCart(index)">Удалить</button>
+        </li>
+      </ul>
+      <button type="button" @click="checkout">Купить</button>
+    </div>
+
+<!-- --------------------------------------------- -->
+
+
+
+
+
+
+
+        <!-- ДОБАВЛЕНИЕ НОВОГО ТОВАРА -->
+
+
+<div v-show="showModal" class="modal">
+  <div class="modal-content">
+    <span class="close" @click="showModal = false">&times;</span>
+    <h2>Добавить новый товар</h2>
+    <form @submit.prevent="addNewProduct">
+      <label for="name">Название:</label>
+      <input type="text" id="name" v-model="newProduct.name" required>
+      <label for="description" class="dada">Описание:</label>
+      <input type="text" id="description" v-model="newProduct.description" required placeholder="Описание дивана. Здесь более подробное описание товара.">
+      <label for="quantity">Количество:</label>
+      <input type="number" id="quantity" v-model="newProduct.quantity" required>
+
+
+          <!-- ------------ -->
+     </span><label for="image">Изображение (150x150):</label>
+      <input type="file" id="image" ref="fileInput" @change="onFileChange">
+      <img v-if="newProduct.image" :src="new Product.image" alt="Изображение">
+      
+
+      <!-- ------------ -->
+      
+        <button type="submit">Сохранить</button>
+        <button type="button" @click="showModal = false">Отмена</button>
+      </form>
+      </div>
+      </div>
+      <!-- --------------------------------------------- -->
+
+
+
+     <footer>
+      <p>© Sleeping Mood, 2023</p>
+    </footer> 
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
